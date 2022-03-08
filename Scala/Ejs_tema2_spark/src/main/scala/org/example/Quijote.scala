@@ -15,7 +15,7 @@ object Quijote {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     val quijote_data = spark.sparkContext
-      .textFile("src/data/mm_ataset.csv")
+      .textFile("src/data/mnm_dataset.csv")
     val nlineas = quijote_data.count()
     println("Número de líneas: " + nlineas)
     val take = quijote_data.take(5)
