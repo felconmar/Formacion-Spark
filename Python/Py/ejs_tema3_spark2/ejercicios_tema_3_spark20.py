@@ -45,12 +45,12 @@ if __name__ == "__main__":
     # Read csv
     fire_df = spark.read.csv(fd_path, header=True, schema=fire_schema)
     # Export to parquet file system
-    fire_parquet_path = os.path.realpath(
-        os.path.join(os.path.dirname(__file__), 'exports', 'sf-fire-calls_parquet.parquet'))
-    if not os.path.exists(fire_parquet_path):
-        fire_df.write.format("parquet").save(fire_parquet_path)
+    #fire_parquet_path = os.path.realpath(
+    #    os.path.join(os.path.dirname(__file__), 'exports', 'sf-fire-calls_parquet.parquet'))
+    #if not os.path.exists(fire_parquet_path):
+    #    fire_df.write.format("parquet").save(fire_parquet_path)
     # Save it as a table, registering metadata with the Hive metastore
-    fire_parquet_table = "fire_parquet_table"
+    #fire_parquet_table = "fire_parquet_table"
     # Ignores the overwrite mode and when i search for the table with a sql command, it can't find it
     # fire_df.write.format("parquet").mode("overwrite").saveAsTable(fire_parquet_table)
     # Selection from dataframe of "Medical Incident"
