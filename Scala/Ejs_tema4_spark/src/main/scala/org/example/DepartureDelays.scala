@@ -2,7 +2,7 @@ package org.example
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
-//import org.apache.spark.ml.source.image
+import org.apache.spark.ml.source.image
 
 
 object DepartureDelays {
@@ -24,14 +24,14 @@ object DepartureDelays {
     flights.createOrReplaceTempView("flights_view")
 
     //Flights with distance over 1000 miles (get all rows tip)
-    //spark.sql("select * from flights_view where distance > 1000 order by distance DESC").show(flights.count().toInt, false)
+    spark.sql("select * from flights_view where distance > 1000 order by distance DESC").show(flights.count().toInt, false)
     val mil_dist = spark.sql("select * from flights_view where distance > 1000 order by distance DESC")
-    //mil_dist.show(10, false)
+    mil_dist.show(10, false)
 
     //Flights between SFO and ORD with at least 2 hour delay
     val sfo_ord_flights = spark.sql("select * from flights_view where origin == 'SFO' " +
       "and destination == 'ORD' and delay >= 120 order by delay DESC")
-    //sfo_ord_flights.show(10, false)
+    sfo_ord_flights.show(10, false)
 
     //label all US flights, regardless of origin and destination,
     //with an indication of the delays they experienced: Very Long Delays (> 6 hours),
@@ -44,7 +44,7 @@ object DepartureDelays {
       "else 'Good for u' " +
       "END AS ReadableDelay " +
       "from flights_view order by delay DESC")
-    //human_read_delays.show(10, false)
+    human_read_delays.show(10, false)
     //Create a new database
     spark.sql("CREATE DATABASE learn_spark_db")
     //Use db
@@ -60,13 +60,13 @@ object DepartureDelays {
     //                            A TempView can only be accessed by the SparkSession that created it.
 
     //Accesing spark metadata
-    //spark.catalog.listDatabases().show(false)
-    //spark.catalog.listTables().show(false)
-    //spark.catalog.listColumns("us_delay_flights_tbl").show(false)
+    spark.catalog.listDatabases().show(false)
+    spark.catalog.listTables().show(false)
+    spark.catalog.listColumns("us_delay_flights_tbl").show(false)
 
     //DataFrameWriter: access its instance through the dataframe you want to save
     //---Parquet
-    /*
+
     flights.write.format("parquet")
       .mode("overwrite")
       .option("compression", "snappy")
@@ -96,33 +96,33 @@ object DepartureDelays {
     flights.write.format("orc")
       .mode("overwrite")
       .save("src/data/exports/orc/flights.orc")
-    */
+
 
 
 
 
     //DataFrameReader: access through a SparkSession instance
     //---Parquet
-    //val parquet_read_flights = spark.read.format("parquet").load("src/data/exports/parquet/flights.parquet/")
-    //parquet_read_flights.show(5)
+    val parquet_read_flights = spark.read.format("parquet").load("src/data/exports/parquet/flights.parquet/")
+    parquet_read_flights.show(5)
     //---SQLTable
-    //spark.sql("select * from sql_flights_table").show()
+    spark.sql("select * from sql_flights_table").show()
     //---JSON
-    //val json_read_flights = spark.read.format("json").load("src/data/exports/json/flights.json")
-    //json_read_flights.show(5)
+    val json_read_flights = spark.read.format("json").load("src/data/exports/json/flights.json")
+    json_read_flights.show(5)
     //---CSV
-    //val csv_read_flights = spark.read.format("csv").load("src/data/exports/csv/flights.csv")
-    //csv_read_flights.show(5)
+    val csv_read_flights = spark.read.format("csv").load("src/data/exports/csv/flights.csv")
+    csv_read_flights.show(5)
     //---AVRO
-    //val avro_read_flights = spark.read.format("avro").load("src/data/exports/avro/flights.avro")
-    //avro_read_flights.show(5)
+    val avro_read_flights = spark.read.format("avro").load("src/data/exports/avro/flights.avro")
+    avro_read_flights.show(5)
     //---ORC
-    //val orc_read_flights = spark.read.format("orc").load("src/data/exports/orc/flights.orc")
-    //orc_read_flights.show(5)
+    val orc_read_flights = spark.read.format("orc").load("src/data/exports/orc/flights.orc")
+    orc_read_flights.show(5)
     //---Images
-    //val imagesDF = spark.read.format("image").load("src/data/train_images/")
-    //imagesDF.printSchema()
-    //imagesDF.select("image.height", "image.width", "image.nChannels", "image.mode", "label").show(5, false)
+    val imagesDF = spark.read.format("image").load("src/data/train_images/")
+    imagesDF.printSchema()
+    imagesDF.select("image.height", "image.width", "image.nChannels", "image.mode", "label").show(5, false)
     //---BinaryFile
     val binary_read_flights = spark.read.format("binaryFile")
       .option("pathGlobalFilter", "*.jpg")

@@ -78,7 +78,9 @@ object FireDepartment {
     // Years of call
     timestamp_fire_df.select(year(col("IncidentDate"))).distinct().orderBy(year(col("IncidentDate"))).show();
     // Most common type of fire calls
-      (timestamp_fire_df.groupBy("CallType").count().orderBy(desc("count")).show(truncate=false))
+    println("Most common type of fire calls")
+    (timestamp_fire_df.groupBy("CallType").count().orderBy(desc("count")).show(truncate=false))
+
     (timestamp_fire_df.select("CallType").groupBy("CallType").agg(count("CallType").alias("Cantidad")).orderBy(
       desc("Cantidad")).show(truncate=false))
 
@@ -95,28 +97,37 @@ object FireDepartment {
     and maximum response times to all fire calls in our data set, importing the PySpark
     functions in a Pythonic way so as not to conflict with the built-in Python functions
     */
+    println("Compute the sum of alarms, the average response time, and the minimum\n " +
+      "   and maximum response times to all fire calls in our data set, importing the PySpark\n " +
+      "   functions in a Pythonic way so as not to conflict with the built-in Python functions")
     (timestamp_fire_df
       .select(sum("NumAlarms"), avg("ResponseDelayedinMins"),
         min("ResponseDelayedinMins"), max("ResponseDelayedinMins"))
       .show())
 
     // What were all the different types of fire calls in 2018?
+    println("What were all the different types of fire calls in 2018?")
       (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).select(col("CallType")).distinct().show(truncate=false))
     // What months within the year 2018 saw the highest number of fire calls?
+    println("What months within the year 2018 saw the highest number of fire calls?")
     (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).groupBy(month(col("IncidentDate")))
       .agg(count("IncidentNumber").alias("Cantidad")).orderBy(desc("Cantidad")).show(truncate=false))
     //-------------------------------------
+    print("---------------------------------------")
     (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).groupBy(month(col("IncidentDate")))
       .count().orderBy(desc("count")).show(truncate=false))
     // Which neighborhood in San Francisco generated the most fire calls in 2018?
+    println("Which neighborhood in San Francisco generated the most fire calls in 2018?")
       (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).groupBy(col("Neighborhood"))
         .count().orderBy(desc("count")).show(truncate=false))
     // Which neighborhoods had the worst response times to fire calls in 2018?
+    println("Which neighborhoods had the worst response times to fire calls in 2018?")
       (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).groupBy(col("Neighborhood"))
         .agg(sum("ResponseDelayedInMins").alias("Suma_ResponseTime"),
           avg("ResponseDelayedInMins").alias("Avg_ResponseTime")).orderBy(desc("Suma_ResponseTime")).show(
         truncate=false))
     // Which week in the year in 2018 had the most fire calls?
+    println("Which week in the year in 2018 had the most fire calls?")
     (timestamp_fire_df.where(year(col("IncidentDate")) === 2018).groupBy(weekofyear(col("IncidentDate")))
       .count().orderBy(desc("count")).show(truncate=false))
     // Is there a correlation between neighborhood, zip code, and number of fire calls?
