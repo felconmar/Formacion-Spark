@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="FirstScalaApp" />
+        <module name="Ejs_tema2_spark" />
+        <module name="Ejs_tema5_spark" />
+        <module name="Ejs_tema4_spark" />
+        <module name="Ejs_tema3_spark" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

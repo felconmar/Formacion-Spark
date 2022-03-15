@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="Maven 1" modules="Ejs_tema2_spark,Ejs_tema3_spark,Ejs_tema4_spark,Ejs_tema5_spark,FisrtScalaApp,SecondScalaApp,untitled">
+      <parameters>
+        <parameter value="-target:jvm-1.5" />
+      </parameters>
+    </profile>
+  </component>
+</project>
