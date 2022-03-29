@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+	<person>
+		<id>1</id>
+		<name>Jose Antonio</name>
+		<lastname>Rodriguez</lastname>
+		<age>42</age>
+		<weight>75</weight>
+		<height>1.63</height>
+		<sex>male</sex>
+	</person>
+	<person>
+		<id>4</id>
+		<name>Antonio Jose</name>
+		<lastname>Rodriguez</lastname>
+		<age>29</age>
+		<weight>60</weight>
+		<height>1.70</height>
+		<sex>male</sex>
+	</person>
+	<person>
+		<id>2</id>
+		<name>Maria Laura</name>
+		<lastname>Rodriguez Gomez</lastname>
+		<age>6</age>
+		<weight>22</weight>
+		<height>1.20</height>
+		<sex>female</sex>
+	</person>
+	<person>
+		<id>3</id>
+		<name>Mariangel</name>
+		<lastname>Rodriguez Gomez</lastname>
+		<age>3</age>
+		<weight>15</weight>
+		<height>1.00</height>
+		<sex>female</sex>
+	</person>
+</people>
