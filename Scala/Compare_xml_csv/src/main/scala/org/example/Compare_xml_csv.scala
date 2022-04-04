@@ -36,7 +36,7 @@ object Compare_xml_csv {
       .withColumn("HASH",sha2(concat_ws("/", col("name"),
         col("lastname"), col("sex"), col("weight"), col("age"),
         col("height")), 0))
-    //people_csv.show()
+    people_csv.show()
 
     //|age|height| id|       lastname|        name|   sex|weight|
 
