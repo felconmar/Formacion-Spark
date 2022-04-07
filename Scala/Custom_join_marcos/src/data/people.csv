@@ -1,0 +1,10 @@
+id;name;lastname;age;weight;height;sex;birthdate;number
+3;Mariangel;Rodriguez Gomez;3;15;1.00;female;2018-08-31;UNO - Madrid
+4;Antonio Jose;Rodriguez;29;60;1.70;male;1992-01-21;TRES - Puerto Ordaz
+2;Maria Laura;Rodriguez Gomez;6;22;1.20;female;2015-11-07;DOS - Madrid
+1;Jose Antonio;Rodriguez;42;70;1.63;male;1980-03-22;CUATRO - Puerto Ordaz
+5;Felix;Conde;22;70;1.73;male;1999-05-03;SEVILLA - UNO - Sevilla
+6;Maria;Rodriguez;6;22;1.20;female;2015-11-07;DOS Madrid
+7;Antonio;Rodriguez;29;60;1.70;male;1992-01-21;ECIJA-TRES
+8;Ana;Gomez;3;15;1.00;female;2018-08-31;"UNO"+Madrid
+9;Lola;Gomez;3;15;1.00;female;2018-08-31;#/&%UNO"+Madrid
