@@ -47,6 +47,7 @@ object Nasa_logs {
       .option("compression", "snappy")
       .save("src/data/exports/parquet/nasa_logs_clean.parquet")
     */
+    
     val nasa_logs_parquet = spark.read.format("parquet").load("src/data/exports/parquet/nasa_logs_clean.parquet")
 
     println("¿Cuáles son los distintos protocolos web utilizados? Agrúpalos.")
